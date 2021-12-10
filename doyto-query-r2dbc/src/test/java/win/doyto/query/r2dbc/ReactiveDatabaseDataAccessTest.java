@@ -12,7 +12,6 @@ import win.doyto.query.r2dbc.role.RoleQuery;
 import win.doyto.query.sql.SqlAndArgs;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**

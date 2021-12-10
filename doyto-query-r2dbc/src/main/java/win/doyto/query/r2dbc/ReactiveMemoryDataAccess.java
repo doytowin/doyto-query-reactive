@@ -2,9 +2,9 @@ package win.doyto.query.r2dbc;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import win.doyto.query.core.MemoryDataAccess;
-import win.doyto.query.core.Pageable;
+import win.doyto.query.core.DoytoQuery;
 import win.doyto.query.entity.Persistable;
+import win.doyto.query.memory.MemoryDataAccess;
 
 import java.io.Serializable;
 
@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  * @author f0rb on 2021-10-27
  */
-public class ReactiveMemoryDataAccess<E extends Persistable<I>, I extends Serializable, Q extends Pageable> implements ReactiveDataAccess<E, I, Q> {
+public class ReactiveMemoryDataAccess<E extends Persistable<I>, I extends Serializable, Q extends DoytoQuery> implements ReactiveDataAccess<E, I, Q> {
 
     private final MemoryDataAccess<E, I, Q> delegate;
 
