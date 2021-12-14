@@ -3,6 +3,7 @@ package win.doyto.query.r2dbc;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import win.doyto.query.core.DoytoQuery;
+import win.doyto.query.core.IdWrapper;
 import win.doyto.query.entity.Persistable;
 import win.doyto.query.sql.SqlAndArgs;
 import win.doyto.query.sql.SqlBuilder;
@@ -42,6 +43,16 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     }
 
     @Override
+    public <V> Flux<V> queryColumns(Q q, Class<V> clazz, String... columns) {
+        return null;
+    }
+
+    @Override
+    public Flux<I> queryIds(Q query) {
+        return null;
+    }
+
+    @Override
     public Mono<Long> count(Q q) {
         SqlAndArgs sqlAndArgs = sqlBuilder.buildCountAndArgs(q);
         return r2dbcOperations.count(sqlAndArgs);
@@ -53,7 +64,22 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     }
 
     @Override
+    public Mono<E> get(IdWrapper<I> w) {
+        return null;
+    }
+
+    @Override
     public Mono<Integer> delete(I id) {
+        return null;
+    }
+
+    @Override
+    public Mono<Integer> delete(IdWrapper<I> w) {
+        return null;
+    }
+
+    @Override
+    public Mono<Integer> delete(Q query) {
         return null;
     }
 
@@ -64,6 +90,11 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
 
     @Override
     public Mono<Integer> patch(E e) {
+        return null;
+    }
+
+    @Override
+    public Mono<Integer> patch(E e, Q q) {
         return null;
     }
 }
