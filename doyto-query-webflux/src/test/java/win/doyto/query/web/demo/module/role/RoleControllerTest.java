@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
+import win.doyto.query.test.role.RoleEntity;
+import win.doyto.query.test.role.RoleQuery;
 import win.doyto.query.util.BeanUtil;
 import win.doyto.query.web.response.ErrorCodeException;
 import win.doyto.query.web.response.PresetErrorCode;
@@ -25,7 +27,7 @@ class RoleControllerTest {
     @BeforeEach
     void setUp() throws IOException {
         roleController = new RoleController();
-        List<RoleEntity> roleEntities = BeanUtil.loadJsonData("role.json", new TypeReference<List<RoleEntity>>() {});
+        List<RoleEntity> roleEntities = BeanUtil.loadJsonData("/role.json", new TypeReference<List<RoleEntity>>() {});
         roleController.create(roleEntities).subscribe();
     }
 

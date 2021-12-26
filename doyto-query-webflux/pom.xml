@@ -84,5 +84,9 @@
             <artifactId>r2dbc-h2</artifactId>
             <version>0.9.0.M1</version>
         </dependency>
+        <dependency>
+            <groupId>win.doyto</groupId>
+            <artifactId>doyto-query-test</artifactId>
+        </dependency>
     </dependencies>
 </project>
