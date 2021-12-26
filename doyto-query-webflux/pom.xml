@@ -7,9 +7,9 @@
 
     <parent>
         <groupId>win.doyto</groupId>
-        <artifactId>doyto-query-reactive</artifactId>
+        <artifactId>doyto-query-reactive-parent</artifactId>
         <version>${revision}</version>
-        <relativePath>../doyto-query-reactive/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>doyto-query-webflux</artifactId>
