@@ -36,7 +36,7 @@ public class BeanPropertyRowMapper<E> implements RowMapper<E> {
     @Override
     @SneakyThrows
     public E apply(Row row, RowMetadata rowMetadata) {
-        E entity = mappedClass.newInstance();
+        E entity = mappedClass.getDeclaredConstructor().newInstance();
 
         Object value;
         for (PropertyDescriptor pd : fieldMap.values()) {
