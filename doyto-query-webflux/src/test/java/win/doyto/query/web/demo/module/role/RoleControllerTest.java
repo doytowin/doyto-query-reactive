@@ -131,7 +131,7 @@ class RoleControllerTest {
 
     @Test
     void page() {
-        roleController.page(RoleQuery.builder().pageNumber(1).pageSize(2).build())
+        roleController.page(RoleQuery.builder().pageNumber(2).pageSize(2).build())
                       .as(StepVerifier::create)
                       .assertNext(page -> {
                           assertThat(page.getTotal()).isEqualTo(3);
