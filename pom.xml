@@ -45,6 +45,8 @@
     </properties>
 
     <modules>
+        <module>doyto-query-reactive-api</module>
+        <module>doyto-query-reactive-memory</module>
         <module>doyto-query-webflux</module>
         <module>doyto-query-r2dbc</module>
     </modules>
@@ -123,7 +125,7 @@
             <dependency>
                 <groupId>win.doyto</groupId>
                 <artifactId>doyto-query-test</artifactId>
-                <version>${revision}</version>
+                <version>0.3.0</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

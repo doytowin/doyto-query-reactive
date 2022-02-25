@@ -1,4 +1,4 @@
-package win.doyto.query.web.component;
+package win.doyto.query.reactive.webflux.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;

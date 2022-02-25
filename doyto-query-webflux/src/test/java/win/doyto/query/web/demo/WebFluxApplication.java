@@ -2,7 +2,7 @@ package win.doyto.query.web.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import win.doyto.query.web.config.WebFluxConfigurerAdapter;
+import win.doyto.query.reactive.webflux.config.WebFluxConfigurerAdapter;
 
 /**
  * WebFluxApplication

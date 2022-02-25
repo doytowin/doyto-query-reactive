@@ -5,6 +5,7 @@ import reactor.core.publisher.Mono;
 import win.doyto.query.core.DoytoQuery;
 import win.doyto.query.core.IdWrapper;
 import win.doyto.query.entity.Persistable;
+import win.doyto.query.reactive.core.ReactiveDataAccess;
 import win.doyto.query.sql.SqlAndArgs;
 import win.doyto.query.sql.SqlBuilder;
 import win.doyto.query.sql.SqlBuilderFactory;
