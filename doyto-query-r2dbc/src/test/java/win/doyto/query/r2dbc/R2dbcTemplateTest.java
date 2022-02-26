@@ -1,3 +1,19 @@
+/*
+ * Copyright © 2019-2022 Forb Yuan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package win.doyto.query.r2dbc;
 
 import io.r2dbc.pool.ConnectionPool;
@@ -27,22 +43,22 @@ class R2dbcTemplateTest {
 
     @BeforeEach
     void setUp() {
-        r2dbc = createR2dbcTemplate();
+        r2dbc = createR2dbcTemplate("testdb");
     }
 
-    static R2dbcTemplate createR2dbcTemplate() {
-        ConnectionFactory connectionFactory = createConnectionFactory();
+    static R2dbcTemplate createR2dbcTemplate(String databaseName) {
+        ConnectionFactory connectionFactory = createConnectionFactory(databaseName);
         initDatabase(connectionFactory);
         return new R2dbcTemplate(connectionFactory);
     }
 
-    private static ConnectionFactory createConnectionFactory() {
+    private static ConnectionFactory createConnectionFactory(String databaseName) {
         // Creates a ConnectionFactory for the specified DRIVER
         ConnectionFactoryOptions options = ConnectionFactoryOptions
                 .builder()
                 .option(DRIVER, "h2")
                 .option(PROTOCOL, "mem")
-                .option(DATABASE, "testdb")
+                .option(DATABASE, databaseName)
                 .build();
         ConnectionFactory connectionFactory = ConnectionFactories.get(options);
 
