@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright © 2019-2021 Forb Yuan
+  ~ Copyright © 2019-2022 Forb Yuan
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@
 
     <properties>
         <revision>0.3.0-SNAPSHOT</revision>
+        <doyto-query.version>0.3.0</doyto-query.version>
 
         <spring-boot.version>2.6.1</spring-boot.version>
 
@@ -111,22 +112,22 @@
             <dependency>
                 <groupId>win.doyto</groupId>
                 <artifactId>doyto-query-api</artifactId>
-                <version>${revision}</version>
+                <version>${doyto-query.version}</version>
             </dependency>
             <dependency>
                 <groupId>win.doyto</groupId>
                 <artifactId>doyto-query-common</artifactId>
-                <version>${revision}</version>
+                <version>${doyto-query.version}</version>
             </dependency>
             <dependency>
                 <groupId>win.doyto</groupId>
                 <artifactId>doyto-query-sql</artifactId>
-                <version>${revision}</version>
+                <version>${doyto-query.version}</version>
             </dependency>
             <dependency>
                 <groupId>win.doyto</groupId>
                 <artifactId>doyto-query-test</artifactId>
-                <version>0.3.0</version>
+                <version>${doyto-query.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
