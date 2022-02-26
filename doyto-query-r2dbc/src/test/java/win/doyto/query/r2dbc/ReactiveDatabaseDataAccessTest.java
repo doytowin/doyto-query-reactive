@@ -9,6 +9,7 @@ import reactor.test.StepVerifier;
 import win.doyto.query.config.GlobalConfiguration;
 import win.doyto.query.r2dbc.role.RoleEntity;
 import win.doyto.query.r2dbc.role.RoleQuery;
+import win.doyto.query.reactive.core.ReactiveDataAccess;
 import win.doyto.query.sql.SqlAndArgs;
 
 import static org.assertj.core.api.Assertions.assertThat;

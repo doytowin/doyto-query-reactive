@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>win.doyto</groupId>
-            <artifactId>doyto-query-r2dbc</artifactId>
+            <artifactId>doyto-query-reactive-memory</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>

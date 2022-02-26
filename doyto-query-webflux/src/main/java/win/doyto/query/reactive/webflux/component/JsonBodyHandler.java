@@ -1,4 +1,4 @@
-package win.doyto.query.web.component;
+package win.doyto.query.reactive.webflux.component;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +17,9 @@ import win.doyto.query.web.response.JsonBody;
 
 
 /**
- * RestResponseAdvice
+ * JsonBodyHandler
  *
- * @author f0rb on 2017-01-15.
+ * @author f0rb on 2021-10-30.
  */
 @Slf4j
 @Component

@@ -1,4 +1,4 @@
-package win.doyto.query.web.controller;
+package win.doyto.query.reactive.webflux.controller;
 
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
