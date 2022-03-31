@@ -164,7 +164,7 @@ class R2dbcTemplateTest {
     @Test
     void query() {
         SqlAndArgs sqlAndArgs = new SqlAndArgs("SELECT * FROM t_role WHERE role_code LIKE ?", "ADMIN%");
-        RowMapper<RoleEntity> rowMapper = (row, rowMetadata) -> {
+        RowMapper<RoleEntity> rowMapper = (row, rn) -> {
             RoleEntity roleEntity = new RoleEntity();
             roleEntity.setId(row.get("id", Integer.class));
             roleEntity.setRoleName(row.get("role_name", String.class));
