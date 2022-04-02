@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
@@ -29,7 +30,6 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
-import javax.annotation.Resource;
 
 /**
  * WebMvcConfigurerAdapter
@@ -40,7 +40,7 @@ import javax.annotation.Resource;
 @ComponentScan("win.doyto.query.reactive.webflux.component")
 public abstract class WebFluxConfigurerAdapter implements WebFluxConfigurer {
 
-    @Resource
+    @Autowired
     private ObjectMapper objectMapper;
 
     protected ObjectMapper configObjectMapper(ObjectMapper objectMapper) {
@@ -51,6 +51,7 @@ public abstract class WebFluxConfigurerAdapter implements WebFluxConfigurer {
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
                 .setSerializationInclusion(JsonInclude.Include.NON_NULL)
                 .setTimeZone(TimeZone.getTimeZone("GMT+8"))
                 .setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
