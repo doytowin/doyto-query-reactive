@@ -27,6 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * BeanPropertyRowMapper
@@ -57,7 +58,7 @@ public class BeanPropertyRowMapper<E> implements RowMapper<E> {
         for (PropertyDescriptor pd : fieldMap.values()) {
             try {
                 value = row.get(pd.getName(), pd.getPropertyType());
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | NoSuchElementException e) {
                 log.error("Fail to get value for [{}]: {}", pd.getName(), e.getMessage());
                 continue;
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright © 2019-2021 Forb Yuan
+  ~ Copyright © 2019-2022 Forb Yuan
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -35,22 +35,8 @@
         </dependency>
         <dependency>
             <groupId>win.doyto</groupId>
-            <artifactId>doyto-query-r2dbc</artifactId>
+            <artifactId>doyto-query-reactive-api</artifactId>
             <version>${revision}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>win.doyto</groupId>
-                    <artifactId>doyto-query-sql</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.r2dbc</groupId>
-                    <artifactId>r2dbc-spi</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.r2dbc</groupId>
-                    <artifactId>r2dbc-pool</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>win.doyto</groupId>
