@@ -34,7 +34,7 @@
 
     <properties>
         <revision>0.3.0-SNAPSHOT</revision>
-        <doyto-query.version>0.3.0</doyto-query.version>
+        <doyto-query.version>0.3.1-SNAPSHOT</doyto-query.version>
 
         <spring-boot.version>2.6.1</spring-boot.version>
 

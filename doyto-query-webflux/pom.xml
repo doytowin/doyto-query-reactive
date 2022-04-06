@@ -52,6 +52,11 @@
             <version>${revision}</version>
         </dependency>
         <dependency>
+            <groupId>win.doyto</groupId>
+            <artifactId>doyto-query-web-common</artifactId>
+            <version>${doyto-query.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
         </dependency>

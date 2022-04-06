@@ -23,10 +23,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
+import win.doyto.query.web.config.WebComponentsConfiguration;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -38,6 +40,7 @@ import java.util.TimeZone;
  */
 @SuppressWarnings("java:S1610")
 @ComponentScan("win.doyto.query.reactive.webflux.component")
+@Import(WebComponentsConfiguration.class)
 public abstract class WebFluxConfigurerAdapter implements WebFluxConfigurer {
 
     @Autowired
