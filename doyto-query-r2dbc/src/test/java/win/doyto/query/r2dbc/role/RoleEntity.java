@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import win.doyto.query.entity.AbstractPersistable;
 
-import javax.persistence.Table;
 
 /**
  * RoleEntity
@@ -13,7 +12,6 @@ import javax.persistence.Table;
  */
 @Getter
 @Setter
-@Table(name = "t_role")
 public class RoleEntity extends AbstractPersistable<Integer> {
 
     private String roleName;

@@ -3,8 +3,8 @@ package win.doyto.query.reactive.webflux.controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import win.doyto.query.core.DoytoQuery;
+import win.doyto.query.core.PageList;
 import win.doyto.query.entity.Persistable;
-import win.doyto.query.service.PageList;
 
 import java.io.Serializable;
 import java.util.Arrays;

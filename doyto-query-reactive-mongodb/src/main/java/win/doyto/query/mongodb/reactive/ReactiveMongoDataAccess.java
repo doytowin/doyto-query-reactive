@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package win.doyto.query.reactive.mongodb;
+package win.doyto.query.mongodb.reactive;
 
 import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoCollection;
-import com.mongodb.reactivestreams.client.MongoDatabase;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
@@ -27,12 +26,14 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import win.doyto.query.core.DoytoQuery;
 import win.doyto.query.core.IdWrapper;
-import win.doyto.query.entity.MongoEntity;
 import win.doyto.query.entity.Persistable;
+import win.doyto.query.mongodb.aggregation.AggregationMetadata;
 import win.doyto.query.mongodb.filter.MongoFilterBuilder;
 import win.doyto.query.reactive.core.ReactiveDataAccess;
+import win.doyto.query.util.BeanUtil;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * ReactiveMongoDataAccess
@@ -43,11 +44,15 @@ import java.io.Serializable;
 public class ReactiveMongoDataAccess<E extends Persistable<I>, I extends Serializable, Q extends DoytoQuery> implements ReactiveDataAccess<E, I, Q> {
     @Getter
     private final MongoCollection<Document> collection;
+    private final AggregationMetadata<MongoCollection<Document>> md;
+    private final ReactiveSessionSupplier reactiveSessionSupplier;
+    private final Class<E> entityClass;
 
     public ReactiveMongoDataAccess(MongoClient mongoClient, Class<E> entityClass) {
-        MongoEntity table = entityClass.getAnnotation(MongoEntity.class);
-        MongoDatabase database = mongoClient.getDatabase(table.database());
-        this.collection = database.getCollection(table.collection());
+        this.entityClass = entityClass;
+        this.md = AggregationMetadata.build(entityClass, new CollectionProvider(mongoClient));
+        this.collection = md.getCollection();
+        this.reactiveSessionSupplier = ReactiveSessionThreadLocalSupplier.create(mongoClient);
     }
 
     @Override
@@ -57,7 +62,9 @@ public class ReactiveMongoDataAccess<E extends Persistable<I>, I extends Seriali
 
     @Override
     public Flux<E> query(Q q) {
-        return null;
+        List<Bson> pipeline = md.buildAggregation(q);
+        return Flux.from(collection.aggregate(reactiveSessionSupplier.get(), pipeline).batchSize(2))
+                   .map(document -> BeanUtil.parse(document.toJson(), entityClass));
     }
 
     @Override

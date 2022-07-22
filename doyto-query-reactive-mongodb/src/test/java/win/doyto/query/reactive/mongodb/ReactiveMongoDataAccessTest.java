@@ -28,6 +28,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import reactor.test.StepVerifier;
+import win.doyto.query.mongodb.reactive.ReactiveMongoDataAccess;
 import win.doyto.query.reactive.mongodb.test.inventory.InventoryEntity;
 import win.doyto.query.reactive.mongodb.test.inventory.InventoryQuery;
 import win.doyto.query.reactive.mongodb.test.inventory.SizeQuery;
