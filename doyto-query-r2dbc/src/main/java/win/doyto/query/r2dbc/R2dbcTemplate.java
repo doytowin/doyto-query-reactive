@@ -25,6 +25,7 @@ import win.doyto.query.sql.SqlAndArgs;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
+import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -87,9 +88,9 @@ public class R2dbcTemplate implements R2dbcOperations {
     }
 
     @Override
-    public Mono<Integer> update(SqlAndArgs sqlAndArgs) {
+    public Mono<Long> update(SqlAndArgs sqlAndArgs) {
         return executeSql(sqlAndArgs)
                 .flatMap(Result::getRowsUpdated)
-                .collect(Collectors.summingInt(Integer::intValue));
+                .collect(Collectors.summingLong((ToLongFunction<Number>) Number::longValue));
     }
 }

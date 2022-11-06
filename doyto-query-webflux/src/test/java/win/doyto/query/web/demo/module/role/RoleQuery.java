@@ -16,26 +16,31 @@
 
 package win.doyto.query.web.demo.module.role;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
-import win.doyto.query.reactive.webflux.controller.ReactiveEIQController;
-import win.doyto.query.web.response.JsonBody;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+import win.doyto.query.core.PageQuery;
+
+import java.util.List;
 
 /**
- * RoleController
+ * UserQuery
  *
- * @author f0rb on 2021-10-26
+ * @author f0rb on 2020-04-01
  */
-@JsonBody
-@RestController
-@RequestMapping("role")
-public class RoleController extends ReactiveEIQController<RoleEntity, Integer, RoleQuery> {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+public class RoleQuery extends PageQuery {
+    private Integer id;
+    private List<Integer> idIn;
 
-    @GetMapping("void")
-    public Mono<?> voidType() {
-        return Mono.empty();
-    }
+    private String roleName;
+    private String roleNameLike;
+    private Boolean valid;
 
 }

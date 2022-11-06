@@ -33,10 +33,10 @@
     <url>https://query.doyto.win/</url>
 
     <properties>
-        <revision>0.3.0-SNAPSHOT</revision>
-        <doyto-query.version>0.3.1-SNAPSHOT</doyto-query.version>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <doyto-query.version>1.0.0-SNAPSHOT</doyto-query.version>
 
-        <spring-boot.version>2.6.5</spring-boot.version>
+        <spring-boot.version>2.7.5</spring-boot.version>
 
         <sourceDirectory>src/main/java</sourceDirectory>
         <skipDeploy>false</skipDeploy>

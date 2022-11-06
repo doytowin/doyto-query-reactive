@@ -29,6 +29,7 @@ import win.doyto.query.r2dbc.role.RoleEntity;
 import win.doyto.query.sql.SqlAndArgs;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
@@ -39,11 +40,12 @@ import static io.r2dbc.spi.ConnectionFactoryOptions.*;
  */
 class R2dbcTemplateTest {
 
+    static AtomicInteger index = new AtomicInteger();
     R2dbcTemplate r2dbc;
 
     @BeforeEach
     void setUp() {
-        r2dbc = createR2dbcTemplate("testdb");
+        r2dbc = createR2dbcTemplate("testdb-" + index.getAndIncrement());
     }
 
     static R2dbcTemplate createR2dbcTemplate(String databaseName) {
@@ -135,7 +137,7 @@ class R2dbcTemplateTest {
 
         r2dbc.update(sql, args)
              .as(StepVerifier::create)
-             .expectNext(2)
+             .expectNext(2L)
              .verifyComplete();
 
         String countSql = "SELECT count(*) FROM t_role WHERE valid = ?";
@@ -152,7 +154,7 @@ class R2dbcTemplateTest {
 
         r2dbc.update(sql, args)
              .as(StepVerifier::create)
-             .expectNext(1)
+             .expectNext(1L)
              .verifyComplete();
 
         r2dbc.count(new SqlAndArgs("SELECT count(*) FROM t_role WHERE valid is null"))

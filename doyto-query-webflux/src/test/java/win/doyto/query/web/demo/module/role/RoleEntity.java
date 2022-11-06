@@ -16,26 +16,27 @@
 
 package win.doyto.query.web.demo.module.role;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
-import win.doyto.query.reactive.webflux.controller.ReactiveEIQController;
-import win.doyto.query.web.response.JsonBody;
+import lombok.Getter;
+import lombok.Setter;
+import win.doyto.query.entity.AbstractCommonEntity;
+import win.doyto.query.validation.CreateGroup;
+
+import javax.validation.constraints.NotNull;
 
 /**
- * RoleController
+ * UserEntity
  *
- * @author f0rb on 2021-10-26
+ * @author f0rb on 2020-04-01
  */
-@JsonBody
-@RestController
-@RequestMapping("role")
-public class RoleController extends ReactiveEIQController<RoleEntity, Integer, RoleQuery> {
+@Getter
+@Setter
+public class RoleEntity extends AbstractCommonEntity<Integer, Long> {
 
-    @GetMapping("void")
-    public Mono<?> voidType() {
-        return Mono.empty();
-    }
+    @NotNull(groups = CreateGroup.class)
+    private String roleName;
 
+    @NotNull(groups = CreateGroup.class)
+    private String roleCode;
+
+    private Boolean valid;
 }
