@@ -50,7 +50,6 @@
         <module>doyto-query-reactive-memory</module>
         <module>doyto-query-webflux</module>
         <module>doyto-query-r2dbc</module>
-        <module>doyto-query-reactive-mongodb</module>
     </modules>
 
     <dependencies>
