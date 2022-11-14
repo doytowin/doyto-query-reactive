@@ -17,10 +17,12 @@
 package win.doyto.query.web.demo.module.role;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.EntityExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -30,6 +32,7 @@ import win.doyto.query.web.demo.WebFluxApplication;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
 import javax.annotation.Resource;
 
@@ -49,6 +52,11 @@ class RoleWebfluxTest {
 
     private Consumer<EntityExchangeResult<byte[]>> log() {
         return entityExchangeResult -> System.out.println(entityExchangeResult.toString());
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        LocaleContextHolder.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
     }
 
     @BeforeEach
