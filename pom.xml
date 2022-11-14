@@ -26,11 +26,11 @@
         <version>2</version>
     </parent>
 
-    <artifactId>doyto-query-reactive-parent</artifactId>
+    <artifactId>doyto-query-reactive</artifactId>
     <name>ReactiveDoytoQuery</name>
     <packaging>pom</packaging>
     <version>${revision}</version>
-    <url>https://query.doyto.win/</url>
+    <url>https://www.doyto.win/</url>
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
@@ -39,7 +39,7 @@
         <spring-boot.version>2.7.5</spring-boot.version>
 
         <sourceDirectory>src/main/java</sourceDirectory>
-        <skipDeploy>false</skipDeploy>
+        <skipDeploy>true</skipDeploy>
 
         <jacoco.destFile>${user.dir}/target/jacoco.exec</jacoco.destFile>
         <jacoco.dataFile>${user.dir}/target/jacoco.exec</jacoco.dataFile>

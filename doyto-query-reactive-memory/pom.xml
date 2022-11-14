@@ -22,12 +22,16 @@
 
     <parent>
         <groupId>win.doyto</groupId>
-        <artifactId>doyto-query-reactive-parent</artifactId>
+        <artifactId>doyto-query-reactive</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>doyto-query-reactive-memory</artifactId>
+
+    <properties>
+        <skipDeploy>false</skipDeploy>
+    </properties>
 
     <dependencies>
         <dependency>

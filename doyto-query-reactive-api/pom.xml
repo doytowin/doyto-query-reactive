@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright © 2019-2021 Forb Yuan
+  ~ Copyright © 2019-2022 Forb Yuan
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -22,12 +22,16 @@
 
     <parent>
         <groupId>win.doyto</groupId>
-        <artifactId>doyto-query-reactive-parent</artifactId>
+        <artifactId>doyto-query-reactive</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>doyto-query-reactive-api</artifactId>
+
+    <properties>
+        <skipDeploy>false</skipDeploy>
+    </properties>
 
     <dependencies>
         <dependency>
