@@ -40,11 +40,15 @@ public interface ReactiveDataAccess<E extends Persistable<I>, I extends Serializ
 
     Mono<Long> count(Q q);
 
-    Mono<E> get(I id);
+    default Mono<E> get(I id) {
+        return get(IdWrapper.build(id));
+    }
 
     Mono<E> get(IdWrapper<I> w);
 
-    Mono<Integer> delete(I id);
+    default Mono<Integer> delete(I id) {
+        return delete(IdWrapper.build(id));
+    }
 
     Mono<Integer> delete(IdWrapper<I> w);
 
