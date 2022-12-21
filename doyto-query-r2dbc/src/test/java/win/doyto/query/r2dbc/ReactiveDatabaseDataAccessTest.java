@@ -118,4 +118,23 @@ class ReactiveDatabaseDataAccessTest {
                                   && roleEntity.getValid() == null)
                           .verifyComplete();
     }
+
+    @Test
+    void patch() {
+        RoleEntity adminRole = new RoleEntity();
+        adminRole.setId(1);
+        adminRole.setRoleName("superadmin");
+        reactiveDataAccess.patch(adminRole)
+                          .as(StepVerifier::create)
+                          .expectNextMatches(cnt -> cnt == 1)
+                          .verifyComplete();
+
+        reactiveDataAccess.get(1)
+                          .as(StepVerifier::create)
+                          .expectNextMatches(roleEntity -> roleEntity.getId() == 1
+                                  && roleEntity.getRoleName().equals("superadmin")
+                                  && roleEntity.getRoleCode().equals("ADMIN")
+                                  && roleEntity.getValid())
+                          .verifyComplete();
+    }
 }
