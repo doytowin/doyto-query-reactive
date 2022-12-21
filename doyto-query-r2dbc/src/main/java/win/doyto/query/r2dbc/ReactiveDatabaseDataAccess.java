@@ -82,13 +82,9 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     }
 
     @Override
-    public Mono<Integer> delete(I id) {
-        return null;
-    }
-
-    @Override
     public Mono<Integer> delete(IdWrapper<I> w) {
-        return null;
+        SqlAndArgs sqlAndArgs = sqlBuilder.buildDeleteById(w);
+        return r2dbcOperations.update(sqlAndArgs);
     }
 
     @Override

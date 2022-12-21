@@ -18,11 +18,14 @@ package win.doyto.query.r2dbc;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.test.StepVerifier;
 import win.doyto.query.config.GlobalConfiguration;
 import win.doyto.query.r2dbc.role.RoleEntity;
 import win.doyto.query.r2dbc.role.RoleQuery;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ReactiveDefaultDataAccessTest
@@ -30,14 +33,18 @@ import win.doyto.query.r2dbc.role.RoleQuery;
  * @author f0rb on 2021-11-18
  */
 class ReactiveDatabaseDataAccessTest {
+    static AtomicInteger index = new AtomicInteger();
 
-    static ReactiveDatabaseDataAccess<RoleEntity, Integer, RoleQuery> reactiveDataAccess;
+    ReactiveDatabaseDataAccess<RoleEntity, Integer, RoleQuery> reactiveDataAccess;
 
     @BeforeAll
     static void beforeAll() {
         GlobalConfiguration.instance().setMapCamelCaseToUnderscore(true);
+    }
 
-        R2dbcTemplate r2dbcTemplate = R2dbcTemplateTest.createR2dbcTemplate("testdb2");
+    @BeforeEach
+    void setUp() {
+        R2dbcTemplate r2dbcTemplate = R2dbcTemplateTest.createR2dbcTemplate("db-role-" + index.getAndIncrement());
         reactiveDataAccess = new ReactiveDatabaseDataAccess<>(r2dbcTemplate, RoleEntity.class);
     }
 
@@ -74,6 +81,14 @@ class ReactiveDatabaseDataAccessTest {
                                   && roleEntity.getRoleName().equals("admin")
                                   && roleEntity.getRoleCode().equals("ADMIN")
                                   && roleEntity.getValid())
+                          .verifyComplete();
+    }
+
+    @Test
+    void delete() {
+        reactiveDataAccess.delete(1)
+                          .as(StepVerifier::create)
+                          .expectNextMatches(cnt -> cnt == 1)
                           .verifyComplete();
     }
 }

@@ -33,9 +33,9 @@ public interface R2dbcOperations {
 
     <I> Mono<I> insert(SqlAndArgs sqlAndArgs, String idColumn, Class<I> idClass);
 
-    Mono<Long> update(SqlAndArgs sqlAndArgs);
+    Mono<Integer> update(SqlAndArgs sqlAndArgs);
 
-    default Mono<Long> update(String sql, Object... args) {
+    default Mono<Integer> update(String sql, Object... args) {
         return update(new SqlAndArgs(sql, args));
     }
 

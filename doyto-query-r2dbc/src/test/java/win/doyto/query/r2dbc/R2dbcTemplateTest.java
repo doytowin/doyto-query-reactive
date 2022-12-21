@@ -137,7 +137,7 @@ class R2dbcTemplateTest {
 
         r2dbc.update(sql, args)
              .as(StepVerifier::create)
-             .expectNext(2L)
+             .expectNext(2)
              .verifyComplete();
 
         String countSql = "SELECT count(*) FROM t_role WHERE valid = ?";
@@ -154,7 +154,7 @@ class R2dbcTemplateTest {
 
         r2dbc.update(sql, args)
              .as(StepVerifier::create)
-             .expectNext(1L)
+             .expectNext(1)
              .verifyComplete();
 
         r2dbc.count(new SqlAndArgs("SELECT count(*) FROM t_role WHERE valid is null"))
