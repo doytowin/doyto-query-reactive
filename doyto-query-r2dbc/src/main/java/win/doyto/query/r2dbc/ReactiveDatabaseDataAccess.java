@@ -95,7 +95,8 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
 
     @Override
     public Mono<Integer> update(E e) {
-        return null;
+        SqlAndArgs sqlAndArgs = sqlBuilder.buildUpdateAndArgs(e);
+        return r2dbcOperations.update(sqlAndArgs);
     }
 
     @Override
