@@ -89,7 +89,8 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
 
     @Override
     public Mono<Integer> delete(Q query) {
-        return null;
+        SqlAndArgs sqlAndArgs = sqlBuilder.buildDeleteAndArgs(query);
+        return r2dbcOperations.update(sqlAndArgs);
     }
 
     @Override

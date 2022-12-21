@@ -91,4 +91,12 @@ class ReactiveDatabaseDataAccessTest {
                           .expectNextMatches(cnt -> cnt == 1)
                           .verifyComplete();
     }
+
+    @Test
+    void deleteByQuery() {
+        reactiveDataAccess.delete(RoleQuery.builder().roleNameLike("vip").build())
+                          .as(StepVerifier::create)
+                          .expectNextMatches(cnt -> cnt == 2)
+                          .verifyComplete();
+    }
 }
