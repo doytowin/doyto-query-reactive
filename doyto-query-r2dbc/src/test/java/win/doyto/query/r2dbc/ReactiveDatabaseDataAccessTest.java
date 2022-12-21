@@ -137,4 +137,16 @@ class ReactiveDatabaseDataAccessTest {
                                   && roleEntity.getValid())
                           .verifyComplete();
     }
+
+    @Test
+    void patchByQuery() {
+        RoleEntity patchRole = new RoleEntity();
+        patchRole.setValid(false);
+
+        RoleQuery queryVip = RoleQuery.builder().roleNameLike("vip").build();
+        reactiveDataAccess.patch(patchRole, queryVip)
+                          .as(StepVerifier::create)
+                          .expectNextMatches(cnt -> cnt == 2)
+                          .verifyComplete();
+    }
 }
