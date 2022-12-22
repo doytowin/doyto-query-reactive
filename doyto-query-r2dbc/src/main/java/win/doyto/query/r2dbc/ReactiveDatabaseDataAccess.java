@@ -25,6 +25,7 @@ import win.doyto.query.reactive.core.ReactiveDataAccess;
 import win.doyto.query.sql.SqlAndArgs;
 import win.doyto.query.sql.SqlBuilder;
 import win.doyto.query.sql.SqlBuilderFactory;
+import win.doyto.query.util.BeanUtil;
 import win.doyto.query.util.ColumnUtil;
 
 import java.io.Serializable;
@@ -40,17 +41,25 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     private SqlBuilder<E> sqlBuilder;
     private RowMapper<E> rowMapper;
     private String[] selectColumns;
+    private Class<I> idClass;
 
     public ReactiveDatabaseDataAccess(R2dbcOperations r2dbcOperations, Class<E> entityClass) {
         this.r2dbcOperations = r2dbcOperations;
         this.sqlBuilder = SqlBuilderFactory.create(entityClass);
         this.rowMapper = new BeanPropertyRowMapper<>(entityClass);
         this.selectColumns = ColumnUtil.resolveSelectColumns(entityClass);
+
+        this.idClass = BeanUtil.getIdClass(entityClass);
     }
 
     @Override
     public Mono<E> create(E e) {
-        return null;
+        SqlAndArgs sqlAndArgs = sqlBuilder.buildCreateAndArgs(e);
+        return r2dbcOperations.insert(sqlAndArgs, "id", idClass)
+                              .map(id -> {
+                                  e.setId(id);
+                                  return e;
+                              });
     }
 
     @Override

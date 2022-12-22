@@ -149,4 +149,18 @@ class ReactiveDatabaseDataAccessTest {
                           .expectNextMatches(cnt -> cnt == 2)
                           .verifyComplete();
     }
+
+    @Test
+    void create() {
+        RoleEntity vip3Role = new RoleEntity();
+        vip3Role.setRoleName("vip3");
+        vip3Role.setRoleCode("VIP3");
+        vip3Role.setValid(false);
+
+        reactiveDataAccess.create(vip3Role)
+                          .as(StepVerifier::create)
+                          .expectNextMatches(roleEntity -> roleEntity.getId() == 4
+                                  && roleEntity.getRoleName().equals("vip3"))
+                          .verifyComplete();
+    }
 }
