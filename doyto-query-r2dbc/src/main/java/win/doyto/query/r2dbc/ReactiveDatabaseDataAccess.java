@@ -87,7 +87,7 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     public <V> Flux<V> queryColumns(Q q, Class<V> clazz, String... columns) {
         @SuppressWarnings("unchecked")
         RowMapper<V> localRowMapper = (RowMapper<V>) classRowMapperMap.computeIfAbsent(
-                clazz, c -> new BeanPropertyRowMapper<>(clazz));
+                clazz, c -> ColumnUtil.isSingleColumn(columns) ? new SingleColumnRowMapper<>(clazz) : new BeanPropertyRowMapper<>(clazz));
         return queryColumns(q, localRowMapper, columns);
     }
 

@@ -185,4 +185,13 @@ class ReactiveDatabaseDataAccessTest {
                           .expectNext(1, 2, 3)
                           .verifyComplete();
     }
+
+    @Test
+    void queryColumnsForSingleColumn() {
+        RoleQuery roleQuery = RoleQuery.builder().build();
+        reactiveDataAccess.queryColumns(roleQuery, String.class, "role_name")
+                          .as(StepVerifier::create)
+                          .expectNext("admin", "vip", "vip2")
+                          .verifyComplete();
+    }
 }
