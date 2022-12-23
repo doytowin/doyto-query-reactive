@@ -16,6 +16,7 @@
 
 package win.doyto.query.r2dbc;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import win.doyto.query.core.DoytoQuery;
@@ -29,8 +30,10 @@ import win.doyto.query.util.BeanUtil;
 import win.doyto.query.util.ColumnUtil;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.persistence.Id;
 
 /**
  * ReactiveDefaultDataAccess
@@ -50,6 +53,7 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     private RowMapper<E> rowMapper;
     private String[] selectColumns;
     private Class<I> idClass;
+    private String idColumn;
 
     public ReactiveDatabaseDataAccess(R2dbcOperations r2dbcOperations, Class<E> entityClass) {
         this.r2dbcOperations = r2dbcOperations;
@@ -57,6 +61,10 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
         this.rowMapper = new BeanPropertyRowMapper<>(entityClass);
         this.selectColumns = ColumnUtil.resolveSelectColumns(entityClass);
 
+        this.idClass = BeanUtil.getIdClass(entityClass);
+
+        Field[] idFields = FieldUtils.getFieldsWithAnnotation(entityClass, Id.class);
+        this.idColumn = idFields[0].getName();
         this.idClass = BeanUtil.getIdClass(entityClass);
     }
 
@@ -89,8 +97,8 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     }
 
     @Override
-    public Flux<I> queryIds(Q query) {
-        return null;
+    public Flux<I> queryIds(Q q) {
+        return queryColumns(q, (row, rn) -> row.get(idColumn, idClass), idColumn);
     }
 
     @Override

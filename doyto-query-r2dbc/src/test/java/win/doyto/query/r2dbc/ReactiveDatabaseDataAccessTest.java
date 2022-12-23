@@ -176,4 +176,13 @@ class ReactiveDatabaseDataAccessTest {
                           ).expectNextCount(2)
                           .verifyComplete();
     }
+
+    @Test
+    void queryIds() {
+        RoleQuery roleQuery = RoleQuery.builder().build();
+        reactiveDataAccess.queryIds(roleQuery)
+                          .as(StepVerifier::create)
+                          .expectNext(1, 2, 3)
+                          .verifyComplete();
+    }
 }
