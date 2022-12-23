@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package win.doyto.query.r2dbc;
+package win.doyto.query.r2dbc.rowmapper;
 
 import io.r2dbc.spi.Row;
 import lombok.SneakyThrows;

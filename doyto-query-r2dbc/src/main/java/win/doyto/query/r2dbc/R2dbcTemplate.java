@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import win.doyto.query.r2dbc.rowmapper.RowMapper;
 import win.doyto.query.sql.SqlAndArgs;
 
 import java.util.concurrent.atomic.AtomicInteger;

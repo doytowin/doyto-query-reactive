@@ -14,25 +14,15 @@
  * limitations under the License.
  */
 
-package win.doyto.query.r2dbc;
+package win.doyto.query.r2dbc.rowmapper;
 
 import io.r2dbc.spi.Row;
 
 /**
- * SingleColumnRowMapper
+ * RowMapper
  *
- * @author f0rb on 2022/12/23
- * @since 1.0.0
+ * @author f0rb on 2021-09-02
  */
-public class SingleColumnRowMapper<V> implements RowMapper<V> {
-    private final Class<V> clazz;
-
-    public SingleColumnRowMapper(Class<V> clazz) {
-        this.clazz = clazz;
-    }
-
-    @Override
-    public V map(Row row, int rn) {
-        return row.get(0, clazz);
-    }
+public interface RowMapper<E> {
+    E map(Row row, int rn);
 }

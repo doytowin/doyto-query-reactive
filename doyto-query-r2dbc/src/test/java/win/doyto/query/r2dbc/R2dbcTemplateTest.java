@@ -26,6 +26,8 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 import win.doyto.query.r2dbc.role.RoleEntity;
+import win.doyto.query.r2dbc.rowmapper.BeanPropertyRowMapper;
+import win.doyto.query.r2dbc.rowmapper.RowMapper;
 import win.doyto.query.sql.SqlAndArgs;
 
 import java.time.Duration;
