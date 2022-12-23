@@ -24,6 +24,7 @@ import reactor.test.StepVerifier;
 import win.doyto.query.config.GlobalConfiguration;
 import win.doyto.query.r2dbc.role.RoleEntity;
 import win.doyto.query.r2dbc.role.RoleQuery;
+import win.doyto.query.r2dbc.role.RoleView;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -161,6 +162,18 @@ class ReactiveDatabaseDataAccessTest {
                           .as(StepVerifier::create)
                           .expectNextMatches(roleEntity -> roleEntity.getId() == 4
                                   && roleEntity.getRoleName().equals("vip3"))
+                          .verifyComplete();
+    }
+
+    @Test
+    void queryColumns() {
+        RoleQuery roleQuery = RoleQuery.builder().build();
+        reactiveDataAccess.queryColumns(roleQuery, RoleView.class, "id", "role_name AS roleName", "role_code AS roleCode")
+                          .as(StepVerifier::create)
+                          .expectNextMatches(roleView -> roleView.getId() == 1
+                                  && roleView.getRoleName().equals("admin")
+                                  && roleView.getRoleCode().equals("ADMIN")
+                          ).expectNextCount(2)
                           .verifyComplete();
     }
 }

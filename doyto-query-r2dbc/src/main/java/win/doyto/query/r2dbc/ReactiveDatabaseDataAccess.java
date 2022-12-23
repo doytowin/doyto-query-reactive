@@ -29,6 +29,8 @@ import win.doyto.query.util.BeanUtil;
 import win.doyto.query.util.ColumnUtil;
 
 import java.io.Serializable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ReactiveDefaultDataAccess
@@ -36,6 +38,12 @@ import java.io.Serializable;
  * @author f0rb on 2021-11-18
  */
 public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Serializable, Q extends DoytoQuery> implements ReactiveDataAccess<E, I, Q> {
+
+    private static final Map<Class<?>, RowMapper<?>> classRowMapperMap;
+
+    static {
+        classRowMapperMap = new ConcurrentHashMap<>();
+    }
 
     private R2dbcOperations r2dbcOperations;
     private SqlBuilder<E> sqlBuilder;
@@ -64,13 +72,20 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
 
     @Override
     public Flux<E> query(Q q) {
-        SqlAndArgs sqlAndArgs = sqlBuilder.buildSelectColumnsAndArgs(q, selectColumns);
-        return r2dbcOperations.query(sqlAndArgs, rowMapper);
+        return queryColumns(q, rowMapper, selectColumns);
     }
 
     @Override
     public <V> Flux<V> queryColumns(Q q, Class<V> clazz, String... columns) {
-        return null;
+        @SuppressWarnings("unchecked")
+        RowMapper<V> localRowMapper = (RowMapper<V>) classRowMapperMap.computeIfAbsent(
+                clazz, c -> new BeanPropertyRowMapper<>(clazz));
+        return queryColumns(q, localRowMapper, columns);
+    }
+
+    private <V> Flux<V> queryColumns(Q q, RowMapper<V> rowMapper, String... columns) {
+        SqlAndArgs sqlAndArgs = sqlBuilder.buildSelectColumnsAndArgs(q, columns);
+        return r2dbcOperations.query(sqlAndArgs, rowMapper);
     }
 
     @Override
