@@ -26,6 +26,7 @@ import win.doyto.query.r2dbc.role.RoleEntity;
 import win.doyto.query.r2dbc.role.RoleQuery;
 import win.doyto.query.r2dbc.role.RoleView;
 
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -192,6 +193,19 @@ class ReactiveDatabaseDataAccessTest {
         reactiveDataAccess.queryColumns(roleQuery, String.class, "role_name")
                           .as(StepVerifier::create)
                           .expectNext("admin", "vip", "vip2")
+                          .verifyComplete();
+    }
+
+    @Test
+    void queryColumnsForMap() {
+        RoleQuery roleQuery = RoleQuery.builder().build();
+        reactiveDataAccess.queryColumns(roleQuery, Map.class, "id", "role_name", "valid")
+                          .as(StepVerifier::create)
+                          .expectNextMatches(roleMap -> roleMap.entrySet().size() == 3
+                                  && roleMap.get("ID").equals(1)
+                                  && roleMap.get("ROLE_NAME").equals("admin")
+                                  && roleMap.get("VALID").equals(true)
+                          ).expectNextCount(2)
                           .verifyComplete();
     }
 }

@@ -23,6 +23,7 @@ import win.doyto.query.core.DoytoQuery;
 import win.doyto.query.core.IdWrapper;
 import win.doyto.query.entity.Persistable;
 import win.doyto.query.r2dbc.rowmapper.BeanPropertyRowMapper;
+import win.doyto.query.r2dbc.rowmapper.ColumnMapRowMapper;
 import win.doyto.query.r2dbc.rowmapper.RowMapper;
 import win.doyto.query.r2dbc.rowmapper.SingleColumnRowMapper;
 import win.doyto.query.reactive.core.ReactiveDataAccess;
@@ -49,22 +50,21 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
 
     static {
         classRowMapperMap = new ConcurrentHashMap<>();
+        classRowMapperMap.put(Map.class, new ColumnMapRowMapper());
     }
 
-    private R2dbcOperations r2dbcOperations;
-    private SqlBuilder<E> sqlBuilder;
-    private RowMapper<E> rowMapper;
-    private String[] selectColumns;
-    private Class<I> idClass;
-    private String idColumn;
+    private final R2dbcOperations r2dbcOperations;
+    private final SqlBuilder<E> sqlBuilder;
+    private final RowMapper<E> rowMapper;
+    private final String[] selectColumns;
+    private final Class<I> idClass;
+    private final String idColumn;
 
     public ReactiveDatabaseDataAccess(R2dbcOperations r2dbcOperations, Class<E> entityClass) {
         this.r2dbcOperations = r2dbcOperations;
         this.sqlBuilder = SqlBuilderFactory.create(entityClass);
         this.rowMapper = new BeanPropertyRowMapper<>(entityClass);
         this.selectColumns = ColumnUtil.resolveSelectColumns(entityClass);
-
-        this.idClass = BeanUtil.getIdClass(entityClass);
 
         Field[] idFields = FieldUtils.getFieldsWithAnnotation(entityClass, Id.class);
         this.idColumn = idFields[0].getName();
