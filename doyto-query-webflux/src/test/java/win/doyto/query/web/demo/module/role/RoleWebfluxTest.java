@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019-2022 Forb Yuan
+ * Copyright © 2019-2023 Forb Yuan
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,11 @@ import org.springframework.web.reactive.function.BodyInserters;
 import win.doyto.query.util.BeanUtil;
 import win.doyto.query.web.demo.WebFluxApplication;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
-import javax.annotation.Resource;
 
 import static org.hamcrest.Matchers.containsInRelativeOrder;
 
