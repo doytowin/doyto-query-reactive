@@ -23,7 +23,7 @@
     <parent>
         <groupId>win.doyto</groupId>
         <artifactId>doyto-oss-parent</artifactId>
-        <version>2</version>
+        <version>4</version>
     </parent>
 
     <artifactId>doyto-query-reactive</artifactId>
@@ -34,15 +34,15 @@
 
     <properties>
         <revision>1.0.0-SNAPSHOT</revision>
-        <doyto-query.version>1.0.0</doyto-query.version>
+        <doyto-query.version>1.0.2-SNAPSHOT</doyto-query.version>
 
-        <spring-boot.version>2.7.5</spring-boot.version>
+        <spring-boot.version>2.7.12</spring-boot.version>
 
         <sourceDirectory>src/main/java</sourceDirectory>
-        <skipDeploy>true</skipDeploy>
+        <maven.deploy.skip>true</maven.deploy.skip>
 
-        <jacoco.destFile>${user.dir}/target/jacoco.exec</jacoco.destFile>
-        <jacoco.dataFile>${user.dir}/target/jacoco.exec</jacoco.dataFile>
+        <jacoco.destFile>${project.basedir}/target/jacoco.exec</jacoco.destFile>
+        <jacoco.dataFile>${project.basedir}/target/jacoco.exec</jacoco.dataFile>
     </properties>
 
     <modules>
@@ -154,28 +154,11 @@
             </testResource>
         </testResources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <configuration>
-                    <skip>${skipDeploy}</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-                <configuration>
-                    <skip>${skipDeploy}</skip>
-                </configuration>
-            </plugin>
-
             <!-- 更新pom版本号-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <version>1.5.0</version>
                 <configuration>
                     <updatePomFile>true</updatePomFile>
                     <flattenMode>bom</flattenMode>
@@ -207,9 +190,9 @@
         </plugins>
     </build>
     <scm>
-        <tag>master</tag>
-        <url>git@github.com:f0rb/doyto-query.git</url>
-        <connection>scm:git:git@github.com:f0rb/doyto-query.git</connection>
-        <developerConnection>scm:git:git@github.com:f0rb/doyto-query.git</developerConnection>
+        <tag>main</tag>
+        <url>https://github.com/doytowin/doyto-query-reactive</url>
+        <connection>scm:git:https://github.com/doytowin/doyto-query-reactive.git</connection>
+        <developerConnection>scm:git:https://github.com/doytowin/doyto-query-reactive.git</developerConnection>
     </scm>
 </project>
