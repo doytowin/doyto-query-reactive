@@ -3,9 +3,9 @@
 [![Code Lines](https://sonarcloud.io/api/project_badges/measure?project=win.doyto%3Adoyto-query-reactive&metric=ncloc)](https://sonarcloud.io/component_measures?id=win.doyto%3Adoyto-query-reactive&metric=ncloc)
 [![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=win.doyto%3Adoyto-query-reactive&metric=coverage)](https://sonarcloud.io/component_measures?id=win.doyto%3Adoyto-query-reactive&metric=coverage)
 
-Reactive DoytoQuery 
+Reactive DoytoQuery
 ---
-A reactive version of [DoytoQuery](https://github.com/doytowin/doyto-query).
+The reactive version of [DoytoQuery](https://github.com/doytowin/doyto-query).
 
 Architecture
 ---
@@ -13,17 +13,16 @@ Architecture
 
 ## Versions
 
-| Module | Snapshot | Release |
-| --- | --- | --- |
-| doyto-query-api | [![api-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-api/) | [![api-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-api/) |
-| doyto-query-common | [![common-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-common/) | [![common-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-common/) |
-| doyto-query-reactive-api | [![reactive-api-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-reactive-api/) | [![reactive-api-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-reactive-api/) |
+| Module                      | Snapshot                                                                                                                           | Release                                                                                                    |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| doyto-query-api             | [![api-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-api/)                         | [![api-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-api/)                         |
+| doyto-query-common          | [![common-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-common/)                   | [![common-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-common/)                   |
+| doyto-query-reactive-api    | [![reactive-api-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-reactive-api/)       | [![reactive-api-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-reactive-api/)       |
 | doyto-query-reactive-memory | [![reactive-memory-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-reactive-memory/) | [![reactive-memory-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-reactive-memory/) |
-| doyto-query-sql | [![sql-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-sql/) | [![sql-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-sql/) |
-| doyto-query-r2dbc | [![r2dbc-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-r2dbc/) | [![r2dbc-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-r2dbc/) |
-| doyto-query-reactive-mongodb | [![reactive-mongodb-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-reactive-mongodb/) | [![reactive-mongodb-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-reactive-mongodb/) |
-| doyto-query-webflux | [![webflux-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-webflux/) | [![webflux-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-webflux/) |
-| doyto-query-dialect | [![dialect-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-dialect/) | [![dialect-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-dialect/) |
+| doyto-query-sql             | [![sql-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-sql/)                         | [![sql-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-sql/)                         |
+| doyto-query-dialect         | [![dialect-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-dialect/)                 | [![dialect-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-dialect/)                 |
+| doyto-query-r2dbc           | [![r2dbc-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-r2dbc/)                     | [![r2dbc-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-r2dbc/)                     |
+| doyto-query-webflux         | [![webflux-snapshots-img]](https://oss.sonatype.org/content/repositories/snapshots/win/doyto/doyto-query-webflux/)                 | [![webflux-release-img]](https://search.maven.org/artifact/win.doyto/doyto-query-webflux/)                 |
 
 License
 -------
