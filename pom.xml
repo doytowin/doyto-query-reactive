@@ -23,7 +23,7 @@
     <parent>
         <groupId>win.doyto</groupId>
         <artifactId>doyto-oss-parent</artifactId>
-        <version>4</version>
+        <version>5</version>
     </parent>
 
     <artifactId>doyto-query-reactive</artifactId>
@@ -33,16 +33,12 @@
     <url>https://www.doyto.win/</url>
 
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-        <doyto-query.version>1.0.2-SNAPSHOT</doyto-query.version>
+        <revision>1.0.2-SNAPSHOT</revision>
+        <doyto-query.version>1.0.2</doyto-query.version>
 
         <spring-boot.version>2.7.12</spring-boot.version>
 
-        <sourceDirectory>src/main/java</sourceDirectory>
         <maven.deploy.skip>true</maven.deploy.skip>
-
-        <jacoco.destFile>${project.basedir}/target/jacoco.exec</jacoco.destFile>
-        <jacoco.dataFile>${project.basedir}/target/jacoco.exec</jacoco.dataFile>
     </properties>
 
     <modules>
