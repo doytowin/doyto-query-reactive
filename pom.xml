@@ -33,8 +33,8 @@
     <url>https://www.doyto.win/</url>
 
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-        <doyto-query.version>1.0.2-SNAPSHOT</doyto-query.version>
+        <revision>1.0.2-SNAPSHOT</revision>
+        <doyto-query.version>1.0.2</doyto-query.version>
 
         <spring-boot.version>2.7.12</spring-boot.version>
 
@@ -160,14 +160,10 @@
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <configuration>
-                    <updatePomFile>true</updatePomFile>
                     <flattenMode>bom</flattenMode>
                     <flattenedPomFilename>target/${project.artifactId}.pom.xml</flattenedPomFilename>
                     <pomElements>
-                        <version>resolve</version>
-                        <properties>resolve</properties>
-                        <dependencies>resolve</dependencies>
-                        <pluginManagement>resolve</pluginManagement>
+                        <properties>remove</properties>
                     </pomElements>
                 </configuration>
                 <executions>
