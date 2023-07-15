@@ -156,14 +156,10 @@
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <configuration>
-                    <updatePomFile>true</updatePomFile>
                     <flattenMode>bom</flattenMode>
                     <flattenedPomFilename>target/${project.artifactId}.pom.xml</flattenedPomFilename>
                     <pomElements>
-                        <version>resolve</version>
-                        <properties>resolve</properties>
-                        <dependencies>resolve</dependencies>
-                        <pluginManagement>resolve</pluginManagement>
+                        <properties>remove</properties>
                     </pomElements>
                 </configuration>
                 <executions>
