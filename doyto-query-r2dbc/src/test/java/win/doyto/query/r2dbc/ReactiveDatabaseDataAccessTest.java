@@ -59,7 +59,7 @@ class ReactiveDatabaseDataAccessTest {
     void count() {
         reactiveDataAccess.count(RoleQuery.builder().build())
                           .as(StepVerifier::create)
-                          .expectNext(3L)
+                          .expectNext(5L)
                           .verifyComplete();
     }
 
@@ -71,7 +71,7 @@ class ReactiveDatabaseDataAccessTest {
                                   && roleEntity.getRoleName().equals("admin")
                                   && roleEntity.getRoleCode().equals("ADMIN")
                                   && roleEntity.getValid())
-                          .expectNextCount(2)
+                          .expectNextCount(4)
                           .verifyComplete();
     }
 
@@ -98,7 +98,7 @@ class ReactiveDatabaseDataAccessTest {
     void deleteByQuery() {
         reactiveDataAccess.delete(RoleQuery.builder().roleNameLike("vip").build())
                           .as(StepVerifier::create)
-                          .expectNextMatches(cnt -> cnt == 2)
+                          .expectNextMatches(cnt -> cnt == 4)
                           .verifyComplete();
     }
 
@@ -148,7 +148,7 @@ class ReactiveDatabaseDataAccessTest {
         RoleQuery queryVip = RoleQuery.builder().roleNameLike("vip").build();
         reactiveDataAccess.patch(patchRole, queryVip)
                           .as(StepVerifier::create)
-                          .expectNextMatches(cnt -> cnt == 2)
+                          .expectNextMatches(cnt -> cnt == 4)
                           .verifyComplete();
     }
 
@@ -161,7 +161,7 @@ class ReactiveDatabaseDataAccessTest {
 
         reactiveDataAccess.create(vip3Role)
                           .as(StepVerifier::create)
-                          .expectNextMatches(roleEntity -> roleEntity.getId() == 4
+                          .expectNextMatches(roleEntity -> roleEntity.getId() == 6
                                   && roleEntity.getRoleName().equals("vip3"))
                           .verifyComplete();
     }
@@ -174,7 +174,7 @@ class ReactiveDatabaseDataAccessTest {
                           .expectNextMatches(roleView -> roleView.getId() == 1
                                   && roleView.getRoleName().equals("admin")
                                   && roleView.getRoleCode().equals("ADMIN")
-                          ).expectNextCount(2)
+                          ).expectNextCount(4)
                           .verifyComplete();
     }
 
@@ -183,7 +183,7 @@ class ReactiveDatabaseDataAccessTest {
         RoleQuery roleQuery = RoleQuery.builder().build();
         reactiveDataAccess.queryIds(roleQuery)
                           .as(StepVerifier::create)
-                          .expectNext(1, 2, 3)
+                          .expectNext(1, 2, 3, 4, 5)
                           .verifyComplete();
     }
 
@@ -192,7 +192,7 @@ class ReactiveDatabaseDataAccessTest {
         RoleQuery roleQuery = RoleQuery.builder().build();
         reactiveDataAccess.queryColumns(roleQuery, String.class, "role_name")
                           .as(StepVerifier::create)
-                          .expectNext("admin", "vip", "vip2")
+                          .expectNext("admin", "vip", "vip2", "vip3", "vip4")
                           .verifyComplete();
     }
 
@@ -205,7 +205,7 @@ class ReactiveDatabaseDataAccessTest {
                                   && roleMap.get("ID").equals(1)
                                   && roleMap.get("ROLE_NAME").equals("admin")
                                   && roleMap.get("VALID").equals(true)
-                          ).expectNextCount(2)
+                          ).expectNextCount(4)
                           .verifyComplete();
     }
 }
