@@ -19,6 +19,7 @@ package win.doyto.query.r2dbc;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import win.doyto.query.config.GlobalConfiguration;
 import win.doyto.query.core.DoytoQuery;
 import win.doyto.query.core.IdWrapper;
 import win.doyto.query.entity.Persistable;
@@ -74,7 +75,8 @@ public class ReactiveDatabaseDataAccess<E extends Persistable<I>, I extends Seri
     @Override
     public Mono<E> create(E e) {
         SqlAndArgs sqlAndArgs = sqlBuilder.buildCreateAndArgs(e);
-        return r2dbcOperations.insert(sqlAndArgs, "id", idClass)
+        String keyColumn = GlobalConfiguration.dialect().resolveKeyColumn(idColumn);
+        return r2dbcOperations.insert(sqlAndArgs, keyColumn, idClass)
                               .map(id -> {
                                   e.setId(id);
                                   return e;
