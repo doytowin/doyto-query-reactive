@@ -72,4 +72,14 @@ class ReactiveMemoryDataAccessTest {
                             .verifyComplete();
     }
 
+    @Test
+    void patchByQuery() {
+        TestEntity testEntity = TestEntity.builder().score(60).build();
+        TestQuery testQuery = TestQuery.builder().valid(true).build();
+        testMemoryDataAccess.patch(testEntity, testQuery)
+                            .as(StepVerifier::create)
+                            .expectNextMatches(i -> i == 3)
+                            .verifyComplete();
+    }
+
 }
