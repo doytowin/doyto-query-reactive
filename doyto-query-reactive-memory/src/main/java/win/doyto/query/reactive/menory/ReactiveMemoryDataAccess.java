@@ -58,7 +58,7 @@ public class ReactiveMemoryDataAccess<E extends Persistable<I>, I extends Serial
 
     @Override
     public Flux<I> queryIds(Q query) {
-        return null;
+        return Flux.fromIterable(delegate.queryIds(query));
     }
 
     @Override
