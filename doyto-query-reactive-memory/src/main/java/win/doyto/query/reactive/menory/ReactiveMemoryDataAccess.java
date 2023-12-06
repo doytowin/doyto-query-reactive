@@ -73,7 +73,7 @@ public class ReactiveMemoryDataAccess<E extends Persistable<I>, I extends Serial
 
     @Override
     public Mono<Integer> delete(Q query) {
-        return null;
+        return Mono.fromSupplier(() -> delegate.delete(query));
     }
 
     @Override

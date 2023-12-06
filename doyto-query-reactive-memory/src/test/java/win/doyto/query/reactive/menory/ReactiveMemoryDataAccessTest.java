@@ -63,4 +63,13 @@ class ReactiveMemoryDataAccessTest {
                             .verifyComplete();
     }
 
+    @Test
+    void deleteByQuery() {
+        TestQuery testQuery = TestQuery.builder().idIn(Arrays.asList(1, 3, 10)).build();
+        testMemoryDataAccess.delete(testQuery)
+                            .as(StepVerifier::create)
+                            .expectNextMatches(i -> i == 2)
+                            .verifyComplete();
+    }
+
 }
