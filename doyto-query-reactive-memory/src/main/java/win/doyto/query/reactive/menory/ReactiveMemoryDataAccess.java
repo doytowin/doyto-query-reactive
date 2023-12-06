@@ -62,23 +62,13 @@ public class ReactiveMemoryDataAccess<E extends Persistable<I>, I extends Serial
     }
 
     @Override
-    public Mono<E> get(I id) {
-        return Mono.fromSupplier(() -> delegate.get(id));
-    }
-
-    @Override
     public Mono<E> get(IdWrapper<I> w) {
-        return null;
-    }
-
-    @Override
-    public Mono<Integer> delete(I id) {
-        return Mono.fromSupplier(() -> delegate.delete(id));
+        return Mono.fromSupplier(() -> delegate.get(w));
     }
 
     @Override
     public Mono<Integer> delete(IdWrapper<I> w) {
-        return null;
+        return Mono.fromSupplier(() -> delegate.delete(w));
     }
 
     @Override
