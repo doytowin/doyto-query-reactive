@@ -53,4 +53,14 @@ class ReactiveMemoryDataAccessTest {
                             .verifyComplete();
     }
 
+    @Test
+    void queryColumns() {
+        TestQuery testQuery = TestQuery.builder().idIn(Arrays.asList(1, 3, 10)).build();
+        testMemoryDataAccess.queryColumns(testQuery, TestEntity.class, "id", "username")
+                            .as(StepVerifier::create)
+                            .expectNextMatches(e -> e.getId() == 1 && e.getUsername().equals("username1"))
+                            .expectNextMatches(e -> e.getId() == 3 && e.getUsername().equals("username3"))
+                            .verifyComplete();
+    }
+
 }
